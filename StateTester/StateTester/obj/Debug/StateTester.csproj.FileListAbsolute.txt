@@ -8,3 +8,5 @@ W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.pdb
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\Debug\LittleStateMachine.dll
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\Debug\LittleStateMachine.pdb
+W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.Form1.resources
+W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.GenerateResource.cache

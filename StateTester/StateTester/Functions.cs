@@ -81,6 +81,9 @@ namespace StateTester
         {
             Console.WriteLine("Name Init");
             Console.ReadKey();
+            Form1 leo = new Form1();
+            leo.Show();
+
             return new LittleState.ReturnObject();
         }
         public static LittleState.ReturnObject IdleName()
