@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace StateTester
 {
+    class GlobalFunctions
+    {
+        public static void Fail(LittleState.StateArgs arg)
+        {
+            Console.WriteLine("Fail caused by ", arg.failException.Message);
+        }
+    }
+
     class CalculatorFuncitons
     {
         public static LittleState.ReturnObject ReadValues()
@@ -54,6 +62,13 @@ namespace StateTester
 
             return retObj;
         }
+        public static LittleState.ReturnObject CalculatorDone()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
+
         public static void Fail(LittleState.StateArgs arg)
         {
             Console.WriteLine("Fail caused by ", arg.failException.Message);
@@ -80,6 +95,13 @@ namespace StateTester
             Console.ReadKey();
             return new LittleState.ReturnObject();
         }
+        public static LittleState.ReturnObject DoneName()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
+
         public static void Fail(LittleState.StateArgs arg)
         {
             Console.WriteLine("Fail caused by ", arg.failException.Message);
@@ -117,9 +139,54 @@ namespace StateTester
             Console.ReadKey();
             return new LittleState.ReturnObject();
         }
+        public static LittleState.ReturnObject DoneMenu()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
+
         public static void Fail(LittleState.StateArgs arg)
         {
             Console.WriteLine("Fail caused by ", arg.failException.Message);
+        }
+    }
+
+    class ProgramFunctions
+    {
+        /// <summary>
+        /// The program has endet succesfully.
+        /// </summary>
+        public static void Done()
+        {
+
+        }
+
+        /// <summary>
+        /// The program has endet with an error.
+        /// </summary>
+        public static LittleState.ReturnObject Fail()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
+
+        /// <summary>
+        /// The program has been paused.
+        /// </summary>
+        public static LittleState.ReturnObject Paused()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+            Console.WriteLine("Pausiert. \nEnter drücken um fortzufahren. \nEscape drücken um zu beenden");
+
+            ConsoleKeyInfo pressedKey = Console.ReadKey();
+            if (pressedKey.Key == ConsoleKey.Enter)
+            {
+                retObj.shallContinueProgram = true;
+            }
+
+            return retObj;
         }
     }
 }

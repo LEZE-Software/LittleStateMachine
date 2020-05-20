@@ -10,112 +10,160 @@ namespace StateTester
     {
         static void Main(string[] args)
         {
-            LittleState.mainState main = LittleState.mainState.Running;
-            LittleState.LittleEvent ex;
+            Console.WriteLine("LittleState Tester\n\n");
+            StateMachine();
+            Console.WriteLine("StateMachine left. Press key to leave.");
+            Console.ReadKey();                      
+        }
+        
+        static void StateMachine()
+        {
+            LittleState.LittleProgram mainProgram = new Runner();
+            LittleState.LittleEvent lEvent = new MenuEvent(); // Program always starts with a menu.
 
-            ex = new MenuEvent(); // Program always starts with a menu.
-
-            while (main== LittleState.mainState.Running)
+            while (mainProgram.state == LittleState.mainState.Running)
             {
                 // New creation to prevent NullReferenceException.                
                 LittleState.ReturnObject retObj = new LittleState.ReturnObject();
                 LittleState.StateArgs arg = new LittleState.StateArgs();
 
-                // ex is the main state.
-                switch (ex.current)
+                switch (lEvent.current)
                 {
-                    case LittleState.EventResult.Init: // Init is set as start value. After creation ex.current is always set to Init.
+                    case LittleState.EventState.Init: // Init is set as start value. After creation ex.current is always set to Init.
                         {
-                            retObj = ex.Init();
+                            // retObj is the object of the function of this state.
+                            retObj = lEvent.Init();
                             arg = retObj.returnArguments;
 
-                            if(retObj.returnState == LittleState.FunctionResult.Success)
+                            switch (retObj.returnState)
                             {
-                                // ex has been initiated and changes now to idle.
-                                ex.ChangeTo(LittleState.EventResult.Idle);
-                            }
-                            else
-                            {
-                                ex.Fail(arg);
+                                case LittleState.FunctionResult.Success:
+                                    {
+                                        //Insert commands if the function succeded.
+                                        lEvent.ChangeTo(LittleState.EventState.Idle);
+                                        break;
+                                    }
+                                case LittleState.FunctionResult.Fail:
+                                    {
+                                        //Insert commands to do if the function failed.
+                                        lEvent.Fail(arg);
+                                        break;
+                                    }
                             }
                             break;
                         }
-                    case LittleState.EventResult.Idle:
+                    case LittleState.EventState.Idle:
                         {
-                            retObj = ex.Idle();
+                            retObj = lEvent.Idle();
                             arg = retObj.returnArguments;
 
-                            if (retObj.returnState == LittleState.FunctionResult.Success)
+                            switch (retObj.returnState)
                             {
-                                // ex has been initiated and changes now to idle.
-                                ex.ChangeTo(LittleState.EventResult.Finish);
+                                case LittleState.FunctionResult.Success:
+                                    {
+                                        //Insert commands if the function succeded.
+                                        lEvent.ChangeTo(LittleState.EventState.Finish);
+                                        break;
+                                    }
+                                case LittleState.FunctionResult.Fail:
+                                    {
+                                        //Insert commands to do if the function failed.
+                                        lEvent.Fail(arg);
+                                        break;
+                                    }
                             }
                             break;
                         }
-                    case LittleState.EventResult.Finish:
+                    case LittleState.EventState.Finish:
                         {
-                            retObj = ex.Finish();
+                            retObj = lEvent.Finish();
                             arg = retObj.returnArguments;
 
-                            if (retObj.returnState == LittleState.FunctionResult.Success)
+                            switch (retObj.returnState)
                             {
-                                // ex has been initiated and changes now to idle.
-                                ex.ChangeTo(LittleState.EventResult.Done);
+                                case LittleState.FunctionResult.Success:
+                                    {
+                                        //Insert commands if the function succeded.
+                                        lEvent.ChangeTo(LittleState.EventState.Done);
+                                        break;
+                                    }
+                                case LittleState.FunctionResult.Fail:
+                                    {
+                                        //Insert commands to do if the function failed.
+                                        lEvent.Fail(arg);
+                                        break;
+                                    }
                             }
                             break;
                         }
-                    case LittleState.EventResult.Done:
+                    case LittleState.EventState.Done:
                         {
+                            retObj = lEvent.Done();
+                            arg = retObj.returnArguments;
+
+                            switch (retObj.returnState)
+                            {
+                                case LittleState.FunctionResult.Success:
+                                    {
+                                        //Insert commands if the function succeded.
+                                        break;
+                                    }
+                                case LittleState.FunctionResult.Fail:
+                                    {
+                                        //Insert commands to do if the function failed.
+                                        lEvent.Fail(arg);
+                                        break;
+                                    }
+                            }
+
                             // Set to paused if que is empty and menu has endet.
-                            if(MainValues.eventQue.Count==0 && ex.info().isRoot == true)
+                            if (MainValues.eventQue.Count == 0 && lEvent.info().isRoot == true)
                             {
-                                main = LittleState.mainState.Paused;
+                                mainProgram.state = LittleState.mainState.Paused;
                             }
                             // If que is not empty execute next event.
-                            else if(MainValues.eventQue.Count>0)
+                            else if (MainValues.eventQue.Count > 0)
                             {
-                                ex = MainValues.eventQue[0];
+                                lEvent = MainValues.eventQue[0];
                                 MainValues.eventQue.RemoveAt(0);
                             }
                             // If last item of the que has endet and it was not the menu, go to the menu.
-                            else if(MainValues.eventQue.Count == 0 && ex.info().isRoot != true)
+                            else if (MainValues.eventQue.Count == 0 && lEvent.info().isRoot != true)
                             {
-                                ex = new MenuEvent();
+                                lEvent = new MenuEvent();
                             }
 
                             break;
                         }
                 }
 
-                switch (main)
+                switch (mainProgram.state)
                 {
                     case LittleState.mainState.Done:
                         {
-                            Console.WriteLine("Programm-Ende.");
-
+                            mainProgram.Done();
                             break;
                         }
                     case LittleState.mainState.Fail:
                         {
-                            Console.WriteLine("Programm-Ende. Fehlfunktion.");
+                            mainProgram.Fail();
                             break;
                         }
                     case LittleState.mainState.Paused:
                         {
-                            Console.WriteLine("Pausiert. \nEnter drücken um fortzufahren. \nEscape drücken um zu beenden");
+                            LittleState.ReturnObject retObjPrg = mainProgram.Paused();
 
-                            ConsoleKeyInfo pressedKey = Console.ReadKey();
-                            if (pressedKey.Key == ConsoleKey.Enter)
+                            if(retObjPrg.shallContinueProgram)
                             {
-                                main = LittleState.mainState.Running;
-                                ex.current = LittleState.EventResult.Init;
+                                mainProgram.state = LittleState.mainState.Running;
+                                lEvent.current = LittleState.EventState.Init;
                             }
                             break;
                         }
                 }
             }
 
-            Console.ReadKey();          
-        }        
+            Console.ReadKey();
+        }
     }  
 }
