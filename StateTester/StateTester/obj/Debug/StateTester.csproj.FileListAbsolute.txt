@@ -1,4 +1,3 @@
-W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csprojAssemblyReference.cache
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.CoreCompileInputs.cache
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\Debug\StateTester.exe.config
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\Debug\StateTester.exe
@@ -10,3 +9,4 @@ W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\Debug\LittleStateMachine.pdb
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.Form1.resources
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.GenerateResource.cache
+W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csprojAssemblyReference.cache

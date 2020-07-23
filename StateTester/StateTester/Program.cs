@@ -11,6 +11,19 @@ namespace StateTester
         static void Main(string[] args)
         {
             Console.WriteLine("LittleState Tester\n\n");
+
+            while(true)
+            {
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+                Console.WriteLine(pressedKey.Key.ToString());
+                if (pressedKey.Key == ConsoleKey.Delete)
+                {
+                    Console.WriteLine("Leo2");
+                    break;
+                }
+            }
+
+            Console.WriteLine("Leo");
             StateMachine();
             Console.WriteLine("StateMachine left. Press key to leave.");
             Console.ReadKey();                      
@@ -29,7 +42,7 @@ namespace StateTester
 
                 switch (lEvent.current)
                 {
-                    case LittleState.EventState.Init: // Init is set as start value. After creation ex.current is always set to Init.
+                    case LittleState.EventState.Init: // Init is set as start value. After creation current is always set to Init.
                         {
                             // retObj is the object of the function of this state.
                             retObj = lEvent.Init();
@@ -54,7 +67,7 @@ namespace StateTester
                         }
                     case LittleState.EventState.Idle:
                         {
-                            retObj = lEvent.Idle();
+                            retObj = lEvent.Idle(lEvent);
                             arg = retObj.returnArguments;
 
                             switch (retObj.returnState)
@@ -130,6 +143,7 @@ namespace StateTester
                             // If last item of the que has endet and it was not the menu, go to the menu.
                             else if (MainValues.eventQue.Count == 0 && lEvent.info().isRoot != true)
                             {
+                                Console.WriteLine("Letztes Item. Zur&uumlck zum Menu");
                                 lEvent = new MenuEvent();
                             }
 

@@ -17,6 +17,8 @@ namespace LittleState
         }
     
         private bool _isRoot;
+
+        public dynamic _payload;
         /// <summary>
         /// The root event shall be the only event which can stop the program if it has finished.
         /// </summary>
@@ -28,10 +30,15 @@ namespace LittleState
             _current = newState;
         }
 
+        public void GetPayload(dynamic load)
+        {
+            this._payload = load;
+        }
+
         public abstract void Fail(StateArgs arg);
         public abstract ReturnObject Init();
         public abstract ReturnObject Done();
-        public abstract ReturnObject Idle();
+        public abstract ReturnObject Idle(LittleState.LittleEvent eve);
         public abstract ReturnObject Finish();
     }
 

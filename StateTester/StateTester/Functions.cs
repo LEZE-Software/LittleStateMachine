@@ -36,7 +36,7 @@ namespace StateTester
 
             return retObj;
         }
-        public static LittleState.ReturnObject CalculateValues()
+        public static LittleState.ReturnObject CalculateValues(LittleState.LittleEvent eve)
         {
             LittleState.ReturnObject retObj = new LittleState.ReturnObject();
 
@@ -68,6 +68,42 @@ namespace StateTester
 
             return retObj;
         }
+        public static LittleState.ReturnObject GetPayload()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
+        public static void Fail(LittleState.StateArgs arg)
+        {
+            Console.WriteLine("Fail caused by ", arg.failException.Message);
+        }
+    }
+
+    class DisplayFunctions
+    {
+        public static LittleState.ReturnObject InitDisplay()
+        {
+            Console.WriteLine("Display Init");
+            return new LittleState.ReturnObject();
+        }
+        public static LittleState.ReturnObject IdleDisplay(LittleState.LittleEvent eve)
+        {
+            Console.WriteLine("Display Idle");
+            Console.WriteLine(eve._payload);
+            return new LittleState.ReturnObject();
+        }
+        public static LittleState.ReturnObject FinishDisplay()
+        {
+            Console.WriteLine("Display Finish");
+            return new LittleState.ReturnObject();
+        }
+        public static LittleState.ReturnObject DoneDisplay()
+        {
+            LittleState.ReturnObject retObj = new LittleState.ReturnObject();
+
+            return retObj;
+        }
 
         public static void Fail(LittleState.StateArgs arg)
         {
@@ -80,22 +116,19 @@ namespace StateTester
         public static LittleState.ReturnObject InitName()
         {
             Console.WriteLine("Name Init");
-            Console.ReadKey();
             Form1 leo = new Form1();
-            leo.Show();
+            leo.ShowDialog();
 
             return new LittleState.ReturnObject();
         }
-        public static LittleState.ReturnObject IdleName()
+        public static LittleState.ReturnObject IdleName(LittleState.LittleEvent eve)
         {
             Console.WriteLine("Name Idle");
-            Console.ReadKey();
             return new LittleState.ReturnObject();
         }
         public static LittleState.ReturnObject FinishName()
         {
             Console.WriteLine("Name Finish");
-            Console.ReadKey();
             return new LittleState.ReturnObject();
         }
         public static LittleState.ReturnObject DoneName()
@@ -116,30 +149,36 @@ namespace StateTester
         public static LittleState.ReturnObject InitMenu()
         {
             Console.WriteLine("Menu Init");
-            Console.ReadKey();
             return new LittleState.ReturnObject();
         }
-        public static LittleState.ReturnObject IdleMenu()
+        public static LittleState.ReturnObject IdleMenu(LittleState.LittleEvent eve)
         {
             Console.WriteLine("Menu Idle 1 für Calc 2 für Name");
 
             int c = Convert.ToInt32(Console.ReadLine());
-            if(c==1)
+            switch (c)
             {
-                MainValues.eventQue.Add(new CalculatorEvent());
+                case 0:
+                    {
+                        Console.WriteLine("Nothing.");
+                        break;
+                    }
+                case 1:
+                    {
+                        MainValues.eventQue.Add(new CalculatorEvent());
+                        break;
+                    }
+                case 2:
+                    {
+                        MainValues.eventQue.Add(new NameEvent());
+                        break;
+                    }
             }
-            else if (c==2)
-            {
-                MainValues.eventQue.Add(new NameEvent());
-            }
-
-            Console.ReadKey();
             return new LittleState.ReturnObject();
         }
         public static LittleState.ReturnObject FinishMenu()
         {
             Console.WriteLine("Menu Finish");
-            Console.ReadKey();
             return new LittleState.ReturnObject();
         }
         public static LittleState.ReturnObject DoneMenu()
@@ -148,7 +187,6 @@ namespace StateTester
 
             return retObj;
         }
-
         public static void Fail(LittleState.StateArgs arg)
         {
             Console.WriteLine("Fail caused by ", arg.failException.Message);
