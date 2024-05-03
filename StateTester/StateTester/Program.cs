@@ -23,7 +23,6 @@ namespace StateTester
                 }
             }
 
-            Console.WriteLine("Leo");
             StateMachine();
             Console.WriteLine("StateMachine left. Press key to leave.");
             Console.ReadKey();                      

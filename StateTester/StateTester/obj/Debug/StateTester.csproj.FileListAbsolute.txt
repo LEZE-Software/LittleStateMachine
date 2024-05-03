@@ -10,3 +10,14 @@ W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\bin\
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.Form1.resources
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.GenerateResource.cache
 W:\OneDrive\10 Programmierung\20_C#\33_StateMachine\StateTester\StateTester\obj\Debug\StateTester.csprojAssemblyReference.cache
+C:\Repository\LittleStateMachine\StateTester\StateTester\bin\Debug\StateTester.exe.config
+C:\Repository\LittleStateMachine\StateTester\StateTester\bin\Debug\StateTester.exe
+C:\Repository\LittleStateMachine\StateTester\StateTester\bin\Debug\StateTester.pdb
+C:\Repository\LittleStateMachine\StateTester\StateTester\bin\Debug\LittleStateMachine.pdb
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.AssemblyReference.cache
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.Form1.resources
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.GenerateResource.cache
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.CoreCompileInputs.cache
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.csproj.CopyComplete
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.exe
+C:\Repository\LittleStateMachine\StateTester\StateTester\obj\Debug\StateTester.pdb
